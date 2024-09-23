@@ -36,19 +36,20 @@
         android:layout_marginBottom="16dp">
 
         <!-- Bank Header -->
+
+        <!-- Bank Icon -->
         <TextView
             android:id="@+id/lblBankHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="18dp"
             android:gravity="center"
             android:text="BANK"
             android:textColor="#000000"
-            android:layout_marginTop="18dp"
-            android:layout_marginRight="18dp"
             android:textSize="36sp"
             android:textStyle="bold" />
 
-        <!-- Bank Icon -->
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -80,7 +81,7 @@
     <Spinner
         android:id="@+id/spnAccounts"
         android:layout_width="match_parent"
-        android:layout_height="37dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/edit_text_background"
         android:prompt="Select Account"
@@ -180,7 +181,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="space_between"
         android:layout_marginTop="32dp">
 
         <TextView
