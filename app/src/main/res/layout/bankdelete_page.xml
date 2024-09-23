@@ -46,14 +46,14 @@
             android:text="BANK"
             android:textColor="#000000"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <!-- Bank Icon -->
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
-            android:src="@drawable/bank" />
+            android:src="@drawable/bank"/>
     </LinearLayout>
 
     <!-- Divider Line -->
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#000000"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="24dp"/>
 
     <!-- Delete an Account Header -->
     <TextView
@@ -74,7 +74,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"/>
 
     <!-- Account Dropdown -->
     <LinearLayout
@@ -90,14 +90,14 @@
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
         <Spinner
             android:id="@+id/spnBankAccount"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"/>
     </LinearLayout>
 
     <!-- Name and Type Fields -->
@@ -117,15 +117,14 @@
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/txtBankName"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
-            android:hint="  Enter Name"
-            android:editable="false" />
+            android:hint="  Enter Name"/>
 
         <TextView
             android:id="@+id/lblBankType"
@@ -136,15 +135,14 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/txtBankType"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
-            android:hint="  Enter Type"
-            android:editable="false" />
+            android:hint="  Enter Type"/>
     </LinearLayout>
 
     <!-- Delete Button -->
@@ -156,7 +154,7 @@
         android:text="DELETE"
         android:textColor="#000000"
         android:textStyle="bold"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"/>
 
     <!-- Footer Links -->
     <LinearLayout
@@ -172,7 +170,7 @@
             android:text="HELP"
             android:textColor="#4CAF50"
             android:layout_marginRight="220dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/lblContactUs"
@@ -180,7 +178,7 @@
             android:layout_height="wrap_content"
             android:text="CONTACT US"
             android:textColor="#4CAF50"
-            android:textSize="14sp" />
+            android:textSize="14sp"/>
     </LinearLayout>
 
 </LinearLayout>
