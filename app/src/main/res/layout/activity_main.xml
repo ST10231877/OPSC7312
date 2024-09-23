@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:background="#F9F9F9">
+
+    <!-- Logo Image -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="333dp"
+        android:layout_height="365dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/logo" />
+
+    <!-- Welcome Text -->
+
+
+    <!-- Login Button -->
+
+    <TextView
+        android:id="@+id/lblWelcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="WELCOME TO
+                      MONEY MAP!"
+        android:textColor="#4CAF50"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/rounded_button"
+        android:padding="16dp"
+        android:textSize="29sp"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+    <!-- Sign Up Button -->
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/rounded_button"
+        android:padding="16dp"
+        android:textSize="29sp"
+        android:text="Sign up"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF" />
+
+</LinearLayout>
