@@ -19,7 +19,6 @@
         <Button
             android:id="@+id/btnHome"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="-13dp"
             android:layout_height="wrap_content"
             android:text="HOME"
             android:textColor="#4CAF50"
@@ -28,62 +27,87 @@
             android:background="@android:color/transparent"/>
     </LinearLayout>
 
-    <!-- Budget Header and Icon -->
+    <!-- Bank Header and Icon -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="16dp">
 
-
-        <!-- Budget Header -->
+        <!-- Bank Header -->
         <TextView
-            android:id="@+id/lblBudgetHeader"
-            android:layout_width="192dp"
-            android:layout_height="54dp"
-            android:layout_marginLeft="6dp"
+            android:id="@+id/lblBankHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="BUDGET"
+            android:text="BANK"
             android:textColor="#000000"
-            android:textSize="44sp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
-        <!-- Budget Icon -->
+        <!-- Bank Icon -->
         <ImageView
             android:layout_width="80dp"
-            android:layout_marginLeft="60dp"
             android:layout_height="80dp"
-            android:src="@drawable/budget" />
+            android:layout_marginStart="16dp"
+            android:src="@drawable/bank" />
     </LinearLayout>
 
     <!-- Divider Line -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2dp"
         android:background="#000000"
         android:layout_marginBottom="24dp" />
 
-    <!-- Create a Budget Text -->
+    <!-- Edit an Account Header -->
     <TextView
-        android:id="@+id/lblCreateBudget"
+        android:id="@+id/lblEditAccountHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="CREATE A BUDGET"
+        android:text="EDIT AN ACCOUNT"
         android:textColor="#4CAF50"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-        android:layout_gravity="center_horizontal"/>
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Name Input -->
+    <!-- Account Dropdown -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginBottom="16dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ACCOUNT"
+            android:textColor="#4CAF50"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spnBankAccount"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/edit_text_background"
+            android:spinnerMode="dropdown" />
+    </LinearLayout>
+
+    <!-- Name and Type Inputs (Green Background) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#A4D79E"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp">
+
+        <!-- Name Input -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -94,90 +118,58 @@
             android:layout_marginBottom="8dp" />
 
         <EditText
-            android:id="@+id/txtBudgetName"
+            android:id="@+id/txtBankName"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
             android:hint="  Enter Name" />
-    </LinearLayout>
 
-    <!-- Allocated Input -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16dp">
-
+        <!-- Type Input -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ALLOCATED"
+            android:text="TYPE"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp" />
 
         <EditText
-            android:id="@+id/txtBudgetAmount"
+            android:id="@+id/txtBankType"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
-            android:hint="  Enter Allocated Amount" />
-    </LinearLayout>
-
-    <!-- Purpose Input -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PURPOSE"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <EditText
-            android:id="@+id/txtBudgetPurpose"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="  Enter Purpose" />
+            android:hint="  Enter Type" />
     </LinearLayout>
 
     <!-- Divider Line -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2dp"
         android:background="#000000"
         android:layout_marginBottom="24dp" />
 
-    <!-- Create Button -->
+    <!-- Edit Button -->
 
     <!-- Footer Links -->
     <Button
-        android:id="@+id/btnBudgetCreate"
-        android:layout_width="match_parent"
+        android:id="@+id/btnBankEdit"
+        android:layout_width="373dp"
         android:layout_height="60dp"
         android:background="@drawable/rounded_button_background"
-        android:gravity="center"
-        android:text="CREATE"
+        android:text="EDIT"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="bottom"
-        android:layout_marginTop="32dp"
-        android:gravity="space_between">
+        android:gravity="space_between"
+        android:layout_marginTop="32dp">
 
         <TextView
             android:id="@+id/lblHelp"
@@ -185,9 +177,8 @@
             android:layout_height="wrap_content"
             android:text="HELP"
             android:textColor="#4CAF50"
-            android:textSize="17sp"
-            android:onClick="onHelpClick"
-            android:layout_marginRight="200dp" />
+            android:layout_marginRight="220dp"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/lblContactUs"
@@ -195,9 +186,7 @@
             android:layout_height="wrap_content"
             android:text="CONTACT US"
             android:textColor="#4CAF50"
-            android:textSize="17sp"
-            android:onClick="onContactClick"
-            android:layout_marginEnd="20dp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>
