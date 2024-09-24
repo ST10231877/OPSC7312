@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:background="#FFFFFF">
 
-    <!-- Section with Logo and Login Text Side by Side -->
+    <!-- Logo and Login Text -->
     <LinearLayout
         android:layout_width="530dp"
         android:layout_height="142dp"
@@ -59,7 +59,6 @@
         android:textStyle="bold"
         android:layout_marginTop="50dp"/>
 
-    <!-- Username Input -->
 
     <!-- Forgot Username Text -->
     <EditText
@@ -148,7 +147,7 @@
         android:gravity="center"
         android:layout_marginTop="26dp">
 
-        <!-- First Circle Button -->
+        <!-- Circle Buttons -->
         <ImageButton
             android:id="@+id/btnSocial1"
             android:layout_width="50dp"
@@ -156,7 +155,7 @@
             android:background="@drawable/circle_background"
             android:layout_margin="8dp"/>
 
-        <!-- Second Circle Button -->
+
         <ImageButton
             android:id="@+id/btnSocial2"
             android:layout_width="50dp"
@@ -164,7 +163,7 @@
             android:background="@drawable/circle_background"
             android:layout_margin="8dp"/>
 
-        <!-- Third Circle Button -->
+
         <ImageButton
             android:id="@+id/btnSocial3"
             android:layout_width="50dp"
