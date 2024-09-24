@@ -126,8 +126,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:layout_marginTop="220dp"
-        android:gravity="space_between">
+        android:layout_marginTop="220dp">
 
         <TextView
             android:id="@+id/lblHelp"
@@ -149,5 +148,4 @@
             android:onClick="onContactClick"
             android:layout_marginLeft="220dp"/>
     </LinearLayout>
-
 </LinearLayout>
