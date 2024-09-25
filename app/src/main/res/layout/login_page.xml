@@ -79,7 +79,9 @@
         android:textSize="14sp"
         android:fontFamily="sans-serif"
         android:layout_marginTop="20dp"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:clickable="true"
+        android:onClick="onForgotUsernameClick"/>
 
     <!-- Password Label -->
     <TextView
@@ -113,7 +115,9 @@
         android:textSize="14sp"
         android:fontFamily="sans-serif"
         android:layout_marginTop="8dp"
-        android:layout_gravity="end"/>
+        android:layout_gravity="end"
+        android:clickable="true"
+        android:onClick="onForgotPasswordClick"/>
 
     <Button
         android:id="@+id/btnLogin"
