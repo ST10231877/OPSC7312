@@ -7,7 +7,7 @@
     android:padding="16dp"
     android:background="#FFFFFF">
 
-    <!-- Back Arrow and Home Button -->
+    <!-- Home Button -->
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
