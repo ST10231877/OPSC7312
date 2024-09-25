@@ -78,7 +78,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         android:fontFamily="sans-serif"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="end"/>
 
     <!-- Password Label -->
@@ -91,7 +91,7 @@
         android:textSize="20sp"
         android:fontFamily="sans-serif-medium"
         android:textStyle="bold"
-        android:layout_marginTop="44dp"/>
+        android:layout_marginTop="24dp"/>
 
     <!-- Password Input -->
     <EditText
@@ -117,15 +117,16 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
+        android:layout_width="266dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded_button_background"
+        android:padding="16dp"
+        android:textSize="20sp"
         android:text="LOGIN"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <!-- Or Login With Text -->
     <TextView
@@ -136,7 +137,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         android:fontFamily="sans-serif-condensed"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="24dp"
         android:layout_gravity="center"/>
 
     <!-- Social Login Buttons -->
@@ -147,29 +148,38 @@
         android:gravity="center"
         android:layout_marginTop="26dp">
 
-        <!-- Circle Buttons -->
+        <!-- Apple Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial1"
+            android:id="@+id/btnApple"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/apple"
+            android:scaleType="centerInside"
+            android:onClick="onAppleLoginClick"/>
 
-
+        <!-- Google Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial2"
+            android:id="@+id/btnGoogle"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/google"
+            android:scaleType="centerInside"
+            android:onClick="onGoogleLoginClick"/>
 
-
+        <!-- Meta Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial3"
+            android:id="@+id/btnMeta"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/meta"
+            android:scaleType="centerInside"
+            android:onClick="onMetaLoginClick"/>
 
     </LinearLayout>
 

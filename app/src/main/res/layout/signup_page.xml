@@ -65,6 +65,7 @@
         android:id="@+id/txtUsername"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_background"
         android:hint="  Enter Username"
@@ -88,6 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="56dp"
         android:background="@drawable/edit_text_background"
         android:hint="  Enter Password"
         android:fontFamily="sans-serif" />
@@ -95,11 +97,12 @@
     <!-- Sign Up Button -->
     <Button
         android:id="@+id/btnSignUp"
-        android:layout_width="186dp"
-        android:layout_height="wrap_content"
+        android:layout_width="266dp"
+        android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded_button_background"
         android:padding="16dp"
+        android:textSize="20sp"
         android:text="SIGN UP"
         android:textAllCaps="false"
         android:textColor="#000000"
@@ -123,31 +126,40 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="26dp">
 
-        <!-- Circle Buttons -->
+        <!-- Apple Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial1"
+            android:id="@+id/btnApple"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_marginRight="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/apple"
+            android:scaleType="centerInside"
+            android:onClick="onAppleLoginClick"/>
 
-
+        <!-- Google Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial2"
+            android:id="@+id/btnGoogle"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/google"
+            android:scaleType="centerInside"
+            android:onClick="onGoogleLoginClick"/>
 
-
+        <!-- Meta Login Button -->
         <ImageButton
-            android:id="@+id/btnSocial3"
+            android:id="@+id/btnMeta"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/circle_background"
-            android:layout_margin="8dp"/>
+            android:layout_marginLeft="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/meta"
+            android:scaleType="centerInside"
+            android:onClick="onMetaLoginClick"/>
 
     </LinearLayout>
 
