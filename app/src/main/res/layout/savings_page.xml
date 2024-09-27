@@ -79,7 +79,7 @@
         <Spinner
             android:id="@+id/spnSavings"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="48dp"
             android:background="@drawable/edit_text_background"
             android:spinnerMode="dropdown" />
     </LinearLayout>
@@ -112,7 +112,7 @@
             android:id="@+id/txtProgressAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" "
+            android:text=""
             android:textColor="#000000"
             android:textStyle="bold"
             android:gravity="center"
@@ -207,13 +207,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="space_between"
+        android:gravity="center"
         android:layout_marginTop="32dp">
 
         <TextView
             android:id="@+id/lblHelp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:text="HELP"
             android:textColor="#4CAF50"
             android:textSize="14sp"
@@ -222,8 +222,8 @@
 
         <TextView
             android:id="@+id/lblContactUs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:text="CONTACT US"
             android:textColor="#4CAF50"
             android:textSize="14sp"

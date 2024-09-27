@@ -80,10 +80,10 @@
     <Spinner
         android:id="@+id/spnAccounts"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/edit_text_background"
-        android:prompt="Select Account"
+        android:prompt="@string/select_account"
         android:spinnerMode="dropdown" />
 
     <!-- Divider Line -->
@@ -191,8 +191,8 @@
 
         <TextView
             android:id="@+id/lblHelp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:text="HELP"
             android:textColor="#4CAF50"
             android:textSize="16sp"
@@ -202,13 +202,13 @@
         <TextView
             android:id="@+id/lblContactUs"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:text="CONTACT US"
             android:layout_marginStart="200dp"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:onClick="onContactClick"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginEnd="24dp" />
     </LinearLayout>
 
 </LinearLayout>
