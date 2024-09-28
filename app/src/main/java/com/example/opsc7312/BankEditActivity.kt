@@ -5,17 +5,16 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.ComponentActivity
 
-class SignUpActivity : ComponentActivity() {
-
-    private lateinit var btnSignUp: Button
+class BankEditActivity : ComponentActivity() {
+    private lateinit var btnHome: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup_page)
+        setContentView(R.layout.bankedit_page)
 
-        btnSignUp = findViewById(R.id.btnSignUp)
+        btnHome = findViewById(R.id.btnHome)
 
-        btnSignUp.setOnClickListener {
+        btnHome.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
 

@@ -33,6 +33,63 @@
             android:name=".SignUpActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BankActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BankCreateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".BankDeleteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".BankEditActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BudgetActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BudgetCreateActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BudgetDeleteActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".BudgetEditActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SavingsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SavingsCreateActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SavingsDeleteActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SavingsEditActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true" />
+
+
+
+
 
     </application>
 
