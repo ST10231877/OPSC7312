@@ -2,6 +2,7 @@ package com.example.opsc7312
 
 import LoginRequest
 import LoginResponse
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,13 +22,20 @@ class LoginActivity : ComponentActivity() {
     private lateinit var txtUsername: EditText
     private lateinit var txtPassword: EditText
 
+    // SharedPreferences to store session data
+    private lateinit var sharedPreferences: android.content.SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
 
+        // Initialize UI components
         btnLogin = findViewById(R.id.btnLogin)
         txtUsername = findViewById(R.id.txtUsername)
         txtPassword = findViewById(R.id.txtPassword)
+
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
         btnLogin.setOnClickListener {
             val username = txtUsername.text.toString().trim()
@@ -56,6 +64,10 @@ class LoginActivity : ComponentActivity() {
                     Log.d("LoginActivity", "Response Body: $loginResponse")
 
                     if (loginResponse != null && loginResponse.message == "Login successful") {
+                        // Save the userId to SharedPreferences
+                        val userId = loginResponse.userId
+                        sharedPreferences.edit().putString("userId", userId).apply()
+
                         // Login successful, navigate to HomeActivity
                         Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))

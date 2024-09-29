@@ -206,6 +206,18 @@
             android:textSize="14sp"
             android:layout_marginTop="20dp"
             android:layout_gravity="end" />
+
+        <!-- Home Button -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-250dp"
+            android:background="@android:color/transparent"
+            android:text="LOG OUT"
+            android:textColor="#4CAF50"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>
