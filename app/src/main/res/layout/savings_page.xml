@@ -76,7 +76,7 @@
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
-        <Spinner
+        \<Spinner
             android:id="@+id/spnSavings"
             android:layout_width="match_parent"
             android:layout_height="48dp"
