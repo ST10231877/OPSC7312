@@ -73,14 +73,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MONTH"
+            android:text="Budget Catagory (Under Development)"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
         <Spinner
-            android:id="@+id/spnBudgetMonth"
+            android:id="@+id/spnBudgetCategory"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
@@ -97,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ALLOCATED BUDGET"
+            android:text="ALLOCATED BUDGET (Under Development)"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"

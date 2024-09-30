@@ -74,10 +74,14 @@ data class AccountsResponse(
 data class CategoriesResponse(
     val message: String,
     val account: String,
-    val budgets: List<Budget>
+    val budgets: List<Budget>,
+    val categories: List<Category>
 )
 
-
+data class Category(
+    val id: String,
+    val name: String
+)
 
 // Data class representing a budget
 data class Budget(
