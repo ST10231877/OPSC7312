@@ -117,7 +117,7 @@
             android:background="#000000"
             android:layout_marginBottom="16dp" />
 
-        <!-- Account Settings Label -->
+        <!-- com.example.opsc7312.api.Account Settings Label -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp" />
 
-        <!-- Account Options -->
+        <!-- com.example.opsc7312.api.Account Options -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

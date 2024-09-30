@@ -1,9 +1,8 @@
 package com.example.opsc7312
 
-import Account
-import AccountsResponse
-import AddCategoryRequest
-import AddCategoryResponse
+import com.example.opsc7312.api.AccountsResponse
+import com.example.opsc7312.api.AddCategoryRequest
+import com.example.opsc7312.api.AddCategoryResponse
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -44,7 +43,7 @@ class BudgetCreateActivity : ComponentActivity() {
         } else {
             Toast.makeText(
                 this,
-                "User session is missing. Please log in again.",
+                "com.example.opsc7312.api.User session is missing. Please log in again.",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -65,7 +64,7 @@ class BudgetCreateActivity : ComponentActivity() {
             }
         }
 
-        // Budget creation button listener
+        // com.example.opsc7312.api.Budget creation button listener
         btnBudgetCreate.setOnClickListener {
             val category = txtCategory.text.toString().trim()
             val amountBudgeted = txtAmountBudgeted.text.toString().trim().toDoubleOrNull()
@@ -83,7 +82,7 @@ class BudgetCreateActivity : ComponentActivity() {
 
     private fun fetchUserAccounts(userId: String) {
         val call = RetrofitClient.apiService.getUserAccounts(userId) // Example API call
-        call.enqueue(object : Callback<AccountsResponse> { // Change List<Account> to AccountsResponse
+        call.enqueue(object : Callback<AccountsResponse> { // Change List<com.example.opsc7312.api.Account> to com.example.opsc7312.api.AccountsResponse
             override fun onResponse(call: Call<AccountsResponse>, response: Response<AccountsResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val accountsResponse = response.body()!!
@@ -135,7 +134,7 @@ class BudgetCreateActivity : ComponentActivity() {
                 if (response.isSuccessful) {
                     Toast.makeText(
                         this@BudgetCreateActivity,
-                        "Budget created successfully!",
+                        "com.example.opsc7312.api.Budget created successfully!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {

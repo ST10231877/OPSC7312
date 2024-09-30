@@ -1,10 +1,9 @@
 package com.example.opsc7312
 
-import RegisterRequest
-import RegisterResponse
+import com.example.opsc7312.api.RegisterRequest
+import com.example.opsc7312.api.RegisterResponse
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -53,7 +52,7 @@ class SignUpActivity : ComponentActivity() {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 if (response.isSuccessful) {
                     val registerResponse = response.body()
-                    if (registerResponse != null && registerResponse.message == "User registered successfully.") {
+                    if (registerResponse != null && registerResponse.message == "com.example.opsc7312.api.User registered successfully.") {
                         Toast.makeText(this@SignUpActivity, "Registration successful!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
                         finish()

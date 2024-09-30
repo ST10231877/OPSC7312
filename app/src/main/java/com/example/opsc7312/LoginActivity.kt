@@ -1,7 +1,7 @@
 package com.example.opsc7312
 
-import LoginRequest
-import LoginResponse
+import com.example.opsc7312.api.LoginRequest
+import com.example.opsc7312.api.LoginResponse
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle

@@ -28,7 +28,7 @@
             android:background="@android:color/transparent"/>
     </LinearLayout>
 
-    <!-- Budget Header and Icon -->
+    <!-- com.example.opsc7312.api.Budget Header and Icon -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
         android:gravity="center_horizontal"
         android:layout_marginBottom="24dp">
 
-        <!-- Budget Header -->
+        <!-- com.example.opsc7312.api.Budget Header -->
         <TextView
             android:id="@+id/lblBudgetHeader"
             android:layout_width="192dp"
@@ -48,7 +48,7 @@
             android:textSize="44sp"
             android:textStyle="bold" />
 
-        <!-- Budget Icon -->
+        <!-- com.example.opsc7312.api.Budget Icon -->
         <ImageView
             android:layout_width="80dp"
             android:layout_marginLeft="60dp"
@@ -63,7 +63,7 @@
         android:background="#000000"
         android:layout_marginBottom="24dp" />
 
-    <!-- Delete a Budget Text -->
+    <!-- Delete a com.example.opsc7312.api.Budget Text -->
     <TextView
         android:id="@+id/lblDeleteBudget"
         android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
         android:layout_marginBottom="24dp"
         android:layout_gravity="center_horizontal"/>
 
-    <!-- Account Dropdown -->
+    <!-- com.example.opsc7312.api.Account Dropdown -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

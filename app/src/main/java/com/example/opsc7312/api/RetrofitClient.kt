@@ -1,6 +1,5 @@
 package com.example.opsc7312.api
 
-import ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

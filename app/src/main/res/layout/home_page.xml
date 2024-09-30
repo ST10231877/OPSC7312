@@ -91,7 +91,7 @@
             android:src="@drawable/bank" />
     </LinearLayout>
 
-    <!-- Budget Button and Icon -->
+    <!-- com.example.opsc7312.api.Budget Button and Icon -->
     <LinearLayout
         android:layout_width="294dp"
         android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <!-- Budget Button -->
+        <!-- com.example.opsc7312.api.Budget Button -->
         <Button
             android:id="@+id/btnBudget"
             android:layout_marginRight="20dp"
@@ -111,7 +111,7 @@
             android:textAllCaps="false"
             android:textColor="#000000" />
 
-        <!-- Budget Icon -->
+        <!-- com.example.opsc7312.api.Budget Icon -->
         <ImageView
             android:id="@+id/imgBudgetIcon"
             android:layout_marginRight="20dp"

@@ -63,7 +63,7 @@
         android:background="#000000"
         android:layout_marginBottom="24dp"/>
 
-    <!-- Delete an Account Header -->
+    <!-- Delete an com.example.opsc7312.api.Account Header -->
     <TextView
         android:id="@+id/lblDeleteAccountHeader"
         android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
 
-    <!-- Account Dropdown -->
+    <!-- com.example.opsc7312.api.Account Dropdown -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

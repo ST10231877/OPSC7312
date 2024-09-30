@@ -1,7 +1,7 @@
 package com.example.opsc7312
 
-import AddAccountRequest
-import AddAccountResponse
+import com.example.opsc7312.api.AddAccountRequest
+import com.example.opsc7312.api.AddAccountResponse
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -56,7 +56,7 @@ class BankCreateActivity : ComponentActivity() {
                 if (userId != null) {
                     createAccount(userId, bankName, bankType, bankDeposit)
                 } else {
-                    Toast.makeText(this, "User ID not found. Please log in again.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "com.example.opsc7312.api.User ID not found. Please log in again.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -75,7 +75,7 @@ class BankCreateActivity : ComponentActivity() {
         call.enqueue(object : Callback<AddAccountResponse> {
             override fun onResponse(call: Call<AddAccountResponse>, response: Response<AddAccountResponse>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@BankCreateActivity, "Account created successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@BankCreateActivity, "com.example.opsc7312.api.Account created successfully!", Toast.LENGTH_SHORT).show()
 
                     // Pass the accountName and userId to BudgetCreateActivity
                     val intent = Intent(this@BankCreateActivity, BankActivity::class.java)

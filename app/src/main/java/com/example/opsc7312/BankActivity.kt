@@ -1,6 +1,6 @@
 package com.example.opsc7312
 
-import AccountsResponse
+import com.example.opsc7312.api.AccountsResponse
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle

@@ -1,14 +1,15 @@
 package com.example.opsc7312
 
-import AccountsResponse
-import UpdateBudgetAmountResponse
-import UpdateSpentAmountResponse
+import com.example.opsc7312.api.AccountsResponse
+import com.example.opsc7312.api.UpdateBudgetAmountResponse
+import com.example.opsc7312.api.UpdateSpentAmountResponse
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
 import com.example.opsc7312.api.RetrofitClient
+import com.example.opsc7312.api.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
