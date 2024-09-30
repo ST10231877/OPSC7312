@@ -78,7 +78,7 @@ class BankCreateActivity : ComponentActivity() {
                     Toast.makeText(this@BankCreateActivity, "Account created successfully!", Toast.LENGTH_SHORT).show()
 
                     // Pass the accountName and userId to BudgetCreateActivity
-                    val intent = Intent(this@BankCreateActivity, BudgetCreateActivity::class.java)
+                    val intent = Intent(this@BankCreateActivity, BankActivity::class.java)
                     intent.putExtra("accountName", accountName)
                     intent.putExtra("userId", userId)
                     startActivity(intent)
