@@ -83,6 +83,18 @@
         android:orientation="vertical"
         android:layout_marginBottom="24dp">
 
+
+    </LinearLayout>
+
+    <!-- Name and Type Fields -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#A4D79E"
+        android:padding="16dp"
+        android:layout_marginBottom="24dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,51 +110,6 @@
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
             android:spinnerMode="dropdown"/>
-    </LinearLayout>
-
-    <!-- Name and Type Fields -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#A4D79E"
-        android:padding="16dp"
-        android:layout_marginBottom="24dp">
-
-        <TextView
-            android:id="@+id/lblName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NAME"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
-
-        <EditText
-            android:id="@+id/txtBankName"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="  Enter Name"/>
-
-        <TextView
-            android:id="@+id/lblBankType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TYPE"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <EditText
-            android:id="@+id/txtBankType"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="  Enter Type"/>
     </LinearLayout>
 
     <!-- Delete Button -->

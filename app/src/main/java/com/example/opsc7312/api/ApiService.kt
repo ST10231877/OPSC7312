@@ -2,10 +2,12 @@ package com.example.opsc7312.api
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import java.util.Locale
 
 // Request body for login
 data class LoginRequest(
@@ -61,10 +63,19 @@ data class Account(
     val budgets: List<Budget>
 )
 
+
 data class AccountsResponse(
     val message: String,
     val accounts: List<Account>
 )
+
+
+data class CategoriesResponse(
+    val message: String,
+    val account: String,
+    val budgets: List<Budget>
+)
+
 
 
 // Data class representing a budget
@@ -98,6 +109,15 @@ data class UpdateSpentAmountResponse(
     val newSpentAmount: Double
 )
 
+// Response data class for account deletion
+data class DeleteAccountResponse(
+    val message: String
+)
+
+data class UpdateBalanceResponse(
+    val message: String,
+    val newBalance: Double
+)
 
 interface ApiService {
     @POST("/api/user/register")
@@ -138,4 +158,31 @@ interface ApiService {
         @Path("category") category: String,
         @Body newAmount: Double
     ): Call<UpdateSpentAmountResponse>
+
+    @DELETE("/api/user/{userId}/account/{accountName}/deleteAccount")
+    fun deleteAccount(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String
+    ): Call<DeleteAccountResponse>
+
+    @DELETE("/api/user/{userId}/account/{accountName}/budget/{category}/deleteCategory")
+    fun deleteCategory(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Path("category") category: String
+    ): Call<Void>
+
+    // API call to get categories for an account
+    @GET("/api/user/{userId}/account/{accountName}/categories")
+    fun getAccountCategories(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String
+    ): Call<CategoriesResponse>
+
+    @PUT("/api/user/{userId}/account/{accountName}/updateBalance")
+    fun updateAccountBalance(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Body newBalance: Double
+    ): Call<UpdateBalanceResponse>
 }
