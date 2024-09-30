@@ -1,6 +1,8 @@
 package com.example.opsc7312
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -36,7 +38,7 @@ class HomeActivity : ComponentActivity() {
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
         val username = sharedPreferences.getString("username", "Unknown User")
 
-        lblWelcome.text = "Welcom "+username+"!"
+        lblWelcome.text = "Welcome "+username+"!"
     }
 
 
@@ -69,7 +71,7 @@ class HomeActivity : ComponentActivity() {
         }
 
         btnLogout.setOnClickListener {
-            logoutUser()
+            showLogoutConfirmationDialog()
         }
     }
 
@@ -95,5 +97,26 @@ class HomeActivity : ComponentActivity() {
         }
         startActivity(intent)
         finish() // Finish HomeActivity
+    }
+
+    // Function to show logout confirmation dialog
+    private fun showLogoutConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout")
+        builder.setMessage("Are you sure you want to logout?")
+
+        // Positive button - Logout
+        builder.setPositiveButton("Yes") { dialogInterface: DialogInterface, _: Int ->
+            logoutUser()  // If the user confirms, log them out
+        }
+
+        // Negative button - Cancel
+        builder.setNegativeButton("No") { dialogInterface: DialogInterface, _: Int ->
+            dialogInterface.dismiss()  // If the user cancels, just dismiss the dialog
+        }
+
+        // Show the dialog
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 }
