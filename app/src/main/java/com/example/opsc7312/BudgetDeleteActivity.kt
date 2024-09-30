@@ -2,20 +2,17 @@ package com.example.opsc7312
 
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
-import androidx.appcompat.app.AlertDialog
 import com.example.opsc7312.api.AccountsResponse
 import com.example.opsc7312.api.CategoriesResponse
 import com.example.opsc7312.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.Locale
 
 class BudgetDeleteActivity : ComponentActivity() {
 
