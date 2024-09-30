@@ -18,7 +18,8 @@ data class LoginRequest(
 // Response from login
 data class LoginResponse(
     val message: String,
-    val userId: String // Capture userId
+    val userId: String,
+    val email: String
 )
 
 // Registration request body

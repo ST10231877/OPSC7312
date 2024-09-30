@@ -11,6 +11,8 @@ class SettingsActivity : ComponentActivity() {
 
     private lateinit var btnHome: Button
     private lateinit var lblPersonalInfoUsername: TextView
+    private lateinit var lblUsername: TextView
+    private lateinit var lblEmail: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +20,8 @@ class SettingsActivity : ComponentActivity() {
 
         btnHome = findViewById(R.id.btnHome)
         lblPersonalInfoUsername = findViewById(R.id.lblPersonalInfoUsername)
+        lblUsername = findViewById(R.id.lblUsername)
+        lblEmail = findViewById(R.id.lblEmail)
 
         // Set click listener for the Home button
         btnHome.setOnClickListener {
@@ -35,5 +39,6 @@ class SettingsActivity : ComponentActivity() {
 
         // Display the username in the TextView
         lblPersonalInfoUsername.text = username
+        lblUsername.text = username
     }
 }

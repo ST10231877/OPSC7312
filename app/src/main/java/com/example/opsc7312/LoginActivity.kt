@@ -72,12 +72,12 @@ class LoginActivity : ComponentActivity() {
                     Log.d("LoginActivity", "Response Body: $loginResponse")
 
                     if (loginResponse != null && loginResponse.message == "Login successful") {
-                        // Save userId and username to SharedPreferences
-                        saveUserSession(loginResponse.userId, username)
+                        // Save userId, username, and email to SharedPreferences
+                        saveUserSession(loginResponse.userId, username, loginResponse.email)
 
                         // Navigate to HomeActivity
                         showToast("Login successful!")
-                        navigateToHome()
+                        navigateToHome(loginResponse.email)
                     } else {
                         showToast("Login failed: ${loginResponse?.message}")
                     }
@@ -93,20 +93,23 @@ class LoginActivity : ComponentActivity() {
         })
     }
 
-    // Save the userId and username to SharedPreferences
-    private fun saveUserSession(userId: String, username: String) {
+    // Save the userId, username, and email to SharedPreferences
+    private fun saveUserSession(userId: String, username: String, email: String) {
         val editor = sharedPreferences.edit()
         editor.putString("userId", userId)
-        editor.putString("username", username)  // Save the username as well
+        editor.putString("username", username)
+        editor.putString("email", email) // Save the email
         editor.apply()
     }
 
     // Navigate to HomeActivity
-    private fun navigateToHome() {
+    private fun navigateToHome(email: String) {
         val intent = Intent(this, HomeActivity::class.java)
+        intent.putExtra("user_email", email) // Pass the email to HomeActivity
         startActivity(intent)
-        finish()
+        finish() // Optionally finish this activity to remove it from the back stack
     }
+
 
     // Show a toast message
     private fun showToast(message: String) {

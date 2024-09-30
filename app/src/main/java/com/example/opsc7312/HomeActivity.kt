@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 
@@ -15,6 +16,7 @@ class HomeActivity : ComponentActivity() {
     private lateinit var btnSavings: Button
     private lateinit var btnSettings: Button
     private lateinit var btnLogout: Button
+    private lateinit var lblWelcome: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,18 @@ class HomeActivity : ComponentActivity() {
 
         // Set button click listeners
         setupButtonListeners()
+
+        displayUsername()
     }
+
+
+    private fun displayUsername() {
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString("username", "Unknown User")
+
+        lblWelcome.text = "Welcom "+username+"!"
+    }
+
 
     // Initialize button views
     private fun initButtons() {
@@ -34,6 +47,7 @@ class HomeActivity : ComponentActivity() {
         btnSavings = findViewById(R.id.btnSavings)
         btnSettings = findViewById(R.id.btnSettings)
         btnLogout = findViewById(R.id.btnLogout)
+        lblWelcome = findViewById(R.id.lblWelcome)
     }
 
     // Setup click listeners for the buttons
