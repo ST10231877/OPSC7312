@@ -92,36 +92,38 @@
     </LinearLayout>
 
     <!-- com.example.opsc7312.api.Budget Button and Icon -->
+
+    <!-- Savings Button and Icon -->
     <LinearLayout
-        android:layout_width="294dp"
+        android:layout_width="302dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <!-- com.example.opsc7312.api.Budget Button -->
+
+        <!-- com.example.opsc7312.api.Budget Icon -->
         <Button
             android:id="@+id/btnBudget"
-            android:layout_marginRight="20dp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:background="@drawable/rounded_button_background"
             android:gravity="center"
             android:text="BUDGET"
             android:textAllCaps="false"
             android:textColor="#000000" />
 
-        <!-- com.example.opsc7312.api.Budget Icon -->
         <ImageView
             android:id="@+id/imgBudgetIcon"
-            android:layout_marginRight="20dp"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginStart="16dp"
+            android:layout_marginRight="20dp"
             android:src="@drawable/budget" />
     </LinearLayout>
 
-    <!-- Savings Button and Icon -->
     <LinearLayout
         android:layout_width="306dp"
         android:layout_height="wrap_content"
@@ -210,10 +212,12 @@
         <!-- Home Button -->
         <Button
             android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-250dp"
+            android:layout_width="98dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="-237dp"
             android:background="@android:color/transparent"
+            android:gravity="center|top"
             android:text="LOG OUT"
             android:textColor="#4CAF50"
             android:textSize="18sp"
