@@ -1,7 +1,6 @@
 package com.example.opsc7312
 
-import AccountsResponse
-import UpdateBalanceResponse
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +12,9 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.opsc7312.api.AccountsResponse
 import com.example.opsc7312.api.RetrofitClient
+import com.example.opsc7312.api.UpdateBalanceResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

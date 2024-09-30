@@ -1,13 +1,13 @@
 package com.example.opsc7312
 
-import AccountsResponse
-import DeleteAccountResponse
+import com.example.opsc7312.api.AccountsResponse
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
+import com.example.opsc7312.api.DeleteAccountResponse
 import com.example.opsc7312.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback

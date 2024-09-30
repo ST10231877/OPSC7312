@@ -1,9 +1,6 @@
 package com.example.opsc7312
 
-import Account
-import AccountsResponse
-import Budget
-import CategoriesResponse
+
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -12,6 +9,8 @@ import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AlertDialog
+import com.example.opsc7312.api.AccountsResponse
+import com.example.opsc7312.api.CategoriesResponse
 import com.example.opsc7312.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
