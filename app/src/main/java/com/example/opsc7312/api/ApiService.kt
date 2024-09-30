@@ -2,6 +2,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 // Request body for login
@@ -83,6 +84,19 @@ data class AddCategoryResponse(
     val message: String
 )
 
+// Data class for budget amount update response
+data class UpdateBudgetAmountResponse(
+    val message: String,
+    val newBudgetedAmount: Double
+)
+
+// Data class for spent amount update response
+data class UpdateSpentAmountResponse(
+    val message: String,
+    val newSpentAmount: Double
+)
+
+
 interface ApiService {
     @POST("/api/user/register")
     fun registerUser(@Body request: RegisterRequest): Call<RegisterResponse>
@@ -105,4 +119,21 @@ interface ApiService {
 
     @GET("api/user/{userId}/accounts")
     fun getUserAccounts(@Path("userId") userId: String): Call<AccountsResponse>
+
+    @PUT("/api/user/{userId}/account/{accountName}/budget/{category}/editBudgetAmount")
+    fun editBudgetAmount(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Path("category") category: String,
+        @Body newAmount: Double
+    ): Call<UpdateBudgetAmountResponse>
+
+    // Update the spent amount for a category
+    @PUT("/api/user/{userId}/account/{accountName}/budget/{category}/editSpentAmount")
+    fun editSpentAmount(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Path("category") category: String,
+        @Body newAmount: Double
+    ): Call<UpdateSpentAmountResponse>
 }
