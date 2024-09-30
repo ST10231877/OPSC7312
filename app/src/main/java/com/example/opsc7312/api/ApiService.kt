@@ -61,10 +61,19 @@ data class Account(
     val budgets: List<Budget>
 )
 
+
 data class AccountsResponse(
     val message: String,
     val accounts: List<Account>
 )
+
+
+data class CategoriesResponse(
+    val message: String,
+    val account: String,
+    val budgets: List<Budget>
+)
+
 
 
 // Data class representing a budget
@@ -162,5 +171,5 @@ interface ApiService {
     fun getAccountCategories(
         @Path("userId") userId: String,
         @Path("accountName") accountName: String
-    ): Call<List<Locale.Category>>
+    ): Call<CategoriesResponse>
 }

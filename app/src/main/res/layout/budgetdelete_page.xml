@@ -76,28 +76,61 @@
         android:layout_marginBottom="24dp"
         android:layout_gravity="center_horizontal"/>
 
-    <!-- Account Dropdown -->
+    <!-- Account Selection Spinner -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginBottom="16dp">
+        android:background="#A4D79E"
+        android:padding="16dp"
+        android:layout_marginBottom="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ACCOUNT"
+            android:text="SELECT ACCOUNT"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
         <Spinner
+            android:id="@+id/spinnerAccounts"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:background="@drawable/edit_text_background"
-            android:spinnerMode="dropdown" />
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edit_text_background" />
+
+
+    <!-- Category Selection Spinner -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECT CATEGORY"
+            android:textColor="#4CAF50"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <Spinner
+            android:id="@+id/spinnerCategories"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@drawable/edit_text_background" />
     </LinearLayout>
+
+    <!-- No Categories Found TextView -->
+    <TextView
+        android:id="@+id/noCategoriesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No categories found for this account."
+        android:textColor="#FF0000"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:visibility="gone" />
 
     <!-- Divider Line -->
     <View
@@ -107,26 +140,27 @@
         android:layout_marginBottom="24dp" />
 
     <!-- Delete Button -->
-
-    <!-- Footer Links -->
     <Button
         android:id="@+id/btnDeleteBudget"
-        android:layout_width="291dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button_background"
         android:gravity="center"
         android:text="DELETE"
         android:textAllCaps="false"
         android:textColor="#000000"
-        android:textStyle="bold" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:enabled="false"/>
 
+    <!-- Footer Links -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="bottom"
-        android:layout_marginTop="220dp">
+        android:layout_marginTop="32dp">
 
         <TextView
             android:id="@+id/lblHelp"
@@ -134,9 +168,9 @@
             android:layout_height="wrap_content"
             android:text="HELP"
             android:textColor="#4CAF50"
-            android:textSize="14sp"
+            android:textSize="17sp"
             android:onClick="onHelpClick"
-            android:layout_marginStart="20dp" />
+            android:layout_marginRight="200dp" />
 
         <TextView
             android:id="@+id/lblContactUs"
@@ -144,8 +178,8 @@
             android:layout_height="wrap_content"
             android:text="CONTACT US"
             android:textColor="#4CAF50"
-            android:textSize="14sp"
+            android:textSize="17sp"
             android:onClick="onContactClick"
-            android:layout_marginLeft="220dp"/>
+            android:layout_marginEnd="20dp" />
     </LinearLayout>
 </LinearLayout>
