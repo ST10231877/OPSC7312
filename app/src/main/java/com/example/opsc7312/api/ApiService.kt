@@ -1,9 +1,11 @@
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import java.util.Locale
 
 // Request body for login
 data class LoginRequest(
@@ -96,6 +98,11 @@ data class UpdateSpentAmountResponse(
     val newSpentAmount: Double
 )
 
+// Response data class for account deletion
+data class DeleteAccountResponse(
+    val message: String
+)
+
 
 interface ApiService {
     @POST("/api/user/register")
@@ -136,4 +143,24 @@ interface ApiService {
         @Path("category") category: String,
         @Body newAmount: Double
     ): Call<UpdateSpentAmountResponse>
+
+    @DELETE("/api/user/{userId}/account/{accountName}/deleteAccount")
+    fun deleteAccount(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String
+    ): Call<DeleteAccountResponse>
+
+    @DELETE("/api/user/{userId}/account/{accountName}/budget/{category}/deleteCategory")
+    fun deleteCategory(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Path("category") category: String
+    ): Call<Void>
+
+    // API call to get categories for an account
+    @GET("/api/user/{userId}/account/{accountName}/categories")
+    fun getAccountCategories(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String
+    ): Call<List<Locale.Category>>
 }
