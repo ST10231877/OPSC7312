@@ -112,6 +112,10 @@ data class DeleteAccountResponse(
     val message: String
 )
 
+data class UpdateBalanceResponse(
+    val message: String,
+    val newBalance: Double
+)
 
 interface ApiService {
     @POST("/api/user/register")
@@ -172,4 +176,11 @@ interface ApiService {
         @Path("userId") userId: String,
         @Path("accountName") accountName: String
     ): Call<CategoriesResponse>
+
+    @PUT("/api/user/{userId}/account/{accountName}/updateBalance")
+    fun updateAccountBalance(
+        @Path("userId") userId: String,
+        @Path("accountName") accountName: String,
+        @Body newBalance: Double
+    ): Call<UpdateBalanceResponse>
 }

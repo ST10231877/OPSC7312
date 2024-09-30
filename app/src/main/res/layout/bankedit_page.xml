@@ -15,7 +15,6 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="16dp">
 
-        <!-- Home Button -->
         <Button
             android:id="@+id/btnHome"
             android:layout_width="wrap_content"
@@ -35,7 +34,6 @@
         android:gravity="center_horizontal"
         android:layout_marginBottom="16dp">
 
-        <!-- Bank Header -->
         <TextView
             android:id="@+id/lblBankHeader"
             android:layout_width="wrap_content"
@@ -46,7 +44,6 @@
             android:textSize="36sp"
             android:textStyle="bold" />
 
-        <!-- Bank Icon -->
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -107,40 +104,22 @@
         android:padding="8dp"
         android:layout_marginBottom="24dp">
 
-        <!-- Name Input -->
+        <!-- Balance Input -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NAME"
+            android:text="BALANCE"
             android:textColor="#4CAF50"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
 
         <EditText
-            android:id="@+id/txtBankName"
+            android:id="@+id/txtNewBalance"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="@drawable/edit_text_background"
-            android:hint="  Enter Name" />
-
-        <!-- Type Input -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TYPE"
-            android:textColor="#4CAF50"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" />
-
-        <EditText
-            android:id="@+id/txtBankType"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:background="@drawable/edit_text_background"
-            android:hint="  Enter Type" />
+            android:hint="  Enter Balance" />
     </LinearLayout>
 
     <!-- Divider Line -->
@@ -151,8 +130,6 @@
         android:layout_marginBottom="24dp" />
 
     <!-- Edit Button -->
-
-    <!-- Footer Links -->
     <Button
         android:id="@+id/btnBankEdit"
         android:layout_width="373dp"
@@ -164,6 +141,7 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
+    <!-- Footer Links -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,5 +165,4 @@
             android:textColor="#4CAF50"
             android:textSize="14sp" />
     </LinearLayout>
-
 </LinearLayout>
