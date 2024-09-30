@@ -4,6 +4,7 @@ import com.example.opsc7312.api.AccountsResponse
 import com.example.opsc7312.api.UpdateBudgetAmountResponse
 import com.example.opsc7312.api.UpdateSpentAmountResponse
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -21,6 +22,7 @@ class BudgetEditActivity : ComponentActivity() {
     private lateinit var txtCategoryName: EditText
     private lateinit var txtAmountBudgeted: EditText
     private lateinit var txtAmountSpent: EditText
+    private lateinit var btnHome: Button
 
     private var accountNames: List<String> = emptyList() // To store account names
     private var selectedAccount: String? = null // To store selected account name
@@ -35,6 +37,7 @@ class BudgetEditActivity : ComponentActivity() {
         txtAmountBudgeted = findViewById(R.id.txtAmountBudgeted)
         txtAmountSpent = findViewById(R.id.txtAmountSpent)
         btnEditBudget = findViewById(R.id.btnEditBudget)
+        btnHome = findViewById(R.id.btnHome)
 
         // Retrieve userId from SharedPreferences
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
@@ -70,6 +73,10 @@ class BudgetEditActivity : ComponentActivity() {
                     updateBudget(userId, selectedAccount!!, category, amountBudgeted, amountSpent)
                 }
             }
+        }
+
+        btnHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
     }
 

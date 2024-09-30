@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 
 class HomeActivity : ComponentActivity() {
@@ -34,8 +35,9 @@ class HomeActivity : ComponentActivity() {
         }
 
         btnSavings.setOnClickListener {
-            startActivity(Intent(this, SavingsActivity::class.java))
+            Toast.makeText(this, "This feature is under development. Come back soon!", Toast.LENGTH_SHORT).show()
         }
+
 
         btnSettings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))

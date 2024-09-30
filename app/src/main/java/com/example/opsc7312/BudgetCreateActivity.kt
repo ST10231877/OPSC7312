@@ -4,6 +4,7 @@ import com.example.opsc7312.api.AccountsResponse
 import com.example.opsc7312.api.AddCategoryRequest
 import com.example.opsc7312.api.AddCategoryResponse
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,6 +21,7 @@ class BudgetCreateActivity : ComponentActivity() {
     private lateinit var txtAmountBudgeted: EditText
     private lateinit var btnBudgetCreate: Button
     private lateinit var spinnerAccounts: Spinner
+    private lateinit var btnHome: Button
 
     private var accountNames: List<String> = emptyList() // To store account names
     private var selectedAccount: String? = null // To store selected account name
@@ -33,6 +35,7 @@ class BudgetCreateActivity : ComponentActivity() {
         txtAmountBudgeted = findViewById(R.id.txtAmountBudgeted)
         btnBudgetCreate = findViewById(R.id.btnBudgetCreate)
         spinnerAccounts = findViewById(R.id.spinnerAccounts)
+        btnHome = findViewById(R.id.btnHome)
 
         // Retrieve userId from SharedPreferences
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
@@ -77,6 +80,10 @@ class BudgetCreateActivity : ComponentActivity() {
                     addCategoryToAccount(userId, selectedAccount!!, category, amountBudgeted)
                 }
             }
+        }
+
+        btnHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
     }
 
