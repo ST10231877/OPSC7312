@@ -16,11 +16,21 @@ class BudgetActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.budget_page)
 
+        // Initialize UI elements
+        initViews()
+
+        // Set button click listeners
+        setButtonListeners()
+    }
+
+    private fun initViews() {
         btnHome = findViewById(R.id.btnHome)
         btnMainBudgetCreate = findViewById(R.id.btnMainBudgetCreate)
         btnMainEditBudget = findViewById(R.id.btnMainEditBudget)
         btnMainDeleteBudget = findViewById(R.id.btnMainDeleteBudget)
+    }
 
+    private fun setButtonListeners() {
         btnHome.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
         }
@@ -36,6 +46,5 @@ class BudgetActivity : ComponentActivity() {
         btnMainDeleteBudget.setOnClickListener {
             startActivity(Intent(this, BudgetDeleteActivity::class.java))
         }
-
     }
 }

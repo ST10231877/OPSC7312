@@ -1,8 +1,5 @@
 package com.example.opsc7312
 
-import com.example.opsc7312.api.AccountsResponse
-import com.example.opsc7312.api.AddCategoryRequest
-import com.example.opsc7312.api.AddCategoryResponse
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +7,9 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.ComponentActivity
+import com.example.opsc7312.api.AccountsResponse
+import com.example.opsc7312.api.AddCategoryRequest
+import com.example.opsc7312.api.AddCategoryResponse
 import com.example.opsc7312.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,11 +31,7 @@ class BudgetCreateActivity : ComponentActivity() {
         setContentView(R.layout.budgetcreate_page)
 
         // Initialize UI elements
-        txtCategory = findViewById(R.id.txtCategory)
-        txtAmountBudgeted = findViewById(R.id.txtAmountBudgeted)
-        btnBudgetCreate = findViewById(R.id.btnBudgetCreate)
-        spinnerAccounts = findViewById(R.id.spinnerAccounts)
-        btnHome = findViewById(R.id.btnHome)
+        initViews()
 
         // Retrieve userId from SharedPreferences
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
@@ -44,21 +40,27 @@ class BudgetCreateActivity : ComponentActivity() {
         if (userId != null) {
             fetchUserAccounts(userId)
         } else {
-            Toast.makeText(
-                this,
-                "com.example.opsc7312.api.User session is missing. Please log in again.",
-                Toast.LENGTH_SHORT
-            ).show()
+            showToast("User session is missing. Please log in again.")
         }
 
         // Set up spinner selection listener
+        setupSpinnerListener()
+
+        // Set button listeners
+        setupButtonListeners(userId)
+    }
+
+    private fun initViews() {
+        txtCategory = findViewById(R.id.txtCategory)
+        txtAmountBudgeted = findViewById(R.id.txtAmountBudgeted)
+        btnBudgetCreate = findViewById(R.id.btnBudgetCreate)
+        spinnerAccounts = findViewById(R.id.spinnerAccounts)
+        btnHome = findViewById(R.id.btnHome)
+    }
+
+    private fun setupSpinnerListener() {
         spinnerAccounts.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedAccount = accountNames[position] // Store the selected account
             }
 
@@ -66,102 +68,72 @@ class BudgetCreateActivity : ComponentActivity() {
                 selectedAccount = null
             }
         }
+    }
 
-        // com.example.opsc7312.api.Budget creation button listener
+    private fun setupButtonListeners(userId: String?) {
+        btnHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
+
         btnBudgetCreate.setOnClickListener {
             val category = txtCategory.text.toString().trim()
             val amountBudgeted = txtAmountBudgeted.text.toString().trim().toDoubleOrNull()
 
             if (category.isEmpty() || amountBudgeted == null || amountBudgeted <= 0 || selectedAccount == null) {
-                Toast.makeText(this, "Please fill in all fields correctly", Toast.LENGTH_SHORT)
-                    .show()
+                showToast("Please fill in all fields correctly")
             } else {
                 if (userId != null && selectedAccount != null) {
                     addCategoryToAccount(userId, selectedAccount!!, category, amountBudgeted)
                 }
             }
         }
-
-        btnHome.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-        }
     }
 
     private fun fetchUserAccounts(userId: String) {
-        val call = RetrofitClient.apiService.getUserAccounts(userId) // Example API call
-        call.enqueue(object : Callback<AccountsResponse> { // Change List<com.example.opsc7312.api.Account> to com.example.opsc7312.api.AccountsResponse
+        val call = RetrofitClient.apiService.getUserAccounts(userId)
+        call.enqueue(object : Callback<AccountsResponse> {
             override fun onResponse(call: Call<AccountsResponse>, response: Response<AccountsResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val accountsResponse = response.body()!!
-                    val accounts = accountsResponse.accounts // Extract accounts from the response
-
-                    accountNames = accounts.map { it.name } // Get list of account names
+                    accountNames = accountsResponse.accounts.map { it.name } // Extract account names
 
                     // Populate the spinner with account names
-                    val adapter = ArrayAdapter(
-                        this@BudgetCreateActivity,
-                        android.R.layout.simple_spinner_item,
-                        accountNames
-                    )
+                    val adapter = ArrayAdapter(this@BudgetCreateActivity, android.R.layout.simple_spinner_item, accountNames)
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerAccounts.adapter = adapter
                 } else {
-                    Toast.makeText(
-                        this@BudgetCreateActivity,
-                        "Failed to fetch accounts",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("Failed to fetch accounts")
                 }
             }
 
             override fun onFailure(call: Call<AccountsResponse>, t: Throwable) {
-                Toast.makeText(this@BudgetCreateActivity, "Failed to connect: ${t.message}", Toast.LENGTH_SHORT).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
     }
 
-    private fun addCategoryToAccount(
-        userId: String,
-        accountName: String,
-        category: String,
-        amountBudgeted: Double
-    ) {
-        val request = AddCategoryRequest(
-            category = category,
-            amountBudgeted = amountBudgeted,
-            amountSpent = 0.0 // Initial amount spent is zero
-        )
+    private fun addCategoryToAccount(userId: String, accountName: String, category: String, amountBudgeted: Double) {
+        val request = AddCategoryRequest(category = category, amountBudgeted = amountBudgeted, amountSpent = 0.0)
 
         val call = RetrofitClient.apiService.addCategory(userId, accountName, request)
         call.enqueue(object : Callback<AddCategoryResponse> {
-            override fun onResponse(
-                call: Call<AddCategoryResponse>,
-                response: Response<AddCategoryResponse>
-            ) {
+            override fun onResponse(call: Call<AddCategoryResponse>, response: Response<AddCategoryResponse>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(
-                        this@BudgetCreateActivity,
-                        "com.example.opsc7312.api.Budget created successfully!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("Budget created successfully!")
                 } else {
                     Log.e("BudgetCreateActivity", "Error: ${response.errorBody()?.string()}")
-                    Toast.makeText(
-                        this@BudgetCreateActivity,
-                        "Error: ${response.errorBody()?.string()}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast("Error: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<AddCategoryResponse>, t: Throwable) {
                 Log.e("BudgetCreateActivity", "Failed to connect: ${t.message}")
-                Toast.makeText(
-                    this@BudgetCreateActivity,
-                    "Failed to connect: ${t.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

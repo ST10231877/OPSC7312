@@ -1,7 +1,5 @@
 package com.example.opsc7312
 
-import com.example.opsc7312.api.LoginRequest
-import com.example.opsc7312.api.LoginResponse
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import com.example.opsc7312.api.LoginRequest
+import com.example.opsc7312.api.LoginResponse
 import com.example.opsc7312.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,8 +21,6 @@ class LoginActivity : ComponentActivity() {
     private lateinit var btnLogin: Button
     private lateinit var txtUsername: EditText
     private lateinit var txtPassword: EditText
-
-    // SharedPreferences to store session data
     private lateinit var sharedPreferences: android.content.SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,27 +28,37 @@ class LoginActivity : ComponentActivity() {
         setContentView(R.layout.login_page)
 
         // Initialize UI components
-        btnLogin = findViewById(R.id.btnLogin)
-        txtUsername = findViewById(R.id.txtUsername)
-        txtPassword = findViewById(R.id.txtPassword)
+        initViews()
 
         // Initialize SharedPreferences
         sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
 
-        btnLogin.setOnClickListener {
-            val username = txtUsername.text.toString().trim()
-            val password = txtPassword.text.toString().trim()
+        // Set login button click listener
+        btnLogin.setOnClickListener { handleLoginClick() }
+    }
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
-            } else {
-                // Hash the password before sending to API
-                val hashedPassword = hashPassword(password)
-                loginUser(username, hashedPassword)
-            }
+    // Initialize UI components
+    private fun initViews() {
+        btnLogin = findViewById(R.id.btnLogin)
+        txtUsername = findViewById(R.id.txtUsername)
+        txtPassword = findViewById(R.id.txtPassword)
+    }
+
+    // Handle the login button click
+    private fun handleLoginClick() {
+        val username = txtUsername.text.toString().trim()
+        val password = txtPassword.text.toString().trim()
+
+        if (username.isEmpty() || password.isEmpty()) {
+            showToast("Please fill in all fields")
+        } else {
+            // Hash the password before sending to API
+            val hashedPassword = hashPassword(password)
+            loginUser(username, hashedPassword)
         }
     }
 
+    // Function to log in the user
     private fun loginUser(username: String, password: String) {
         val request = LoginRequest(username, password)
         val call = RetrofitClient.apiService.loginUser(request)
@@ -64,30 +72,48 @@ class LoginActivity : ComponentActivity() {
                     Log.d("LoginActivity", "Response Body: $loginResponse")
 
                     if (loginResponse != null && loginResponse.message == "Login successful") {
-                        // Save the userId to SharedPreferences
-                        val userId = loginResponse.userId
-                        sharedPreferences.edit().putString("userId", userId).apply()
+                        // Save userId and username to SharedPreferences
+                        saveUserSession(loginResponse.userId, username)
 
-                        // Login successful, navigate to HomeActivity
-                        Toast.makeText(this@LoginActivity, "Login successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-                        finish()
+                        // Navigate to HomeActivity
+                        showToast("Login successful!")
+                        navigateToHome()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Login failed: ${loginResponse?.message}", Toast.LENGTH_SHORT).show()
+                        showToast("Login failed: ${loginResponse?.message}")
                     }
                 } else {
-                    Toast.makeText(this@LoginActivity, "Error: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                    showToast("Error: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Log.e("LoginActivity", "Failed to connect: ${t.message}")
-                Toast.makeText(this@LoginActivity, "Failed to connect: ${t.message}", Toast.LENGTH_SHORT).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
     }
 
-    // Function to hash password
+    // Save the userId and username to SharedPreferences
+    private fun saveUserSession(userId: String, username: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("userId", userId)
+        editor.putString("username", username)  // Save the username as well
+        editor.apply()
+    }
+
+    // Navigate to HomeActivity
+    private fun navigateToHome() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    // Show a toast message
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    // Hash the password using SHA-256
     private fun hashPassword(password: String): String {
         val digest = MessageDigest.getInstance("SHA-256")
         val hashBytes = digest.digest(password.toByteArray())

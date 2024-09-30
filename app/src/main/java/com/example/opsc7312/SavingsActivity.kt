@@ -12,31 +12,46 @@ class SavingsActivity : ComponentActivity() {
     private lateinit var btnMainEditSavings: Button
     private lateinit var btnMainDeleteSavings: Button
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.savings_page)
 
+        // Initialize buttons
+        initViews()
+
+        // Set button click listeners
+        setupButtonListeners()
+    }
+
+    // Initialize button views
+    private fun initViews() {
         btnHome = findViewById(R.id.btnHome)
         btnMainCreateSavings = findViewById(R.id.btnMainCreateSavings)
         btnMainEditSavings = findViewById(R.id.btnMainEditSavings)
         btnMainDeleteSavings = findViewById(R.id.btnMainDeleteSavings)
+    }
 
+    // Setup click listeners for buttons
+    private fun setupButtonListeners() {
         btnHome.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            navigateToActivity(HomeActivity::class.java)
         }
 
         btnMainCreateSavings.setOnClickListener {
-            startActivity(Intent(this, SavingsCreateActivity::class.java))
+            navigateToActivity(SavingsCreateActivity::class.java)
         }
 
         btnMainEditSavings.setOnClickListener {
-            startActivity(Intent(this, SavingsEditActivity::class.java))
+            navigateToActivity(SavingsEditActivity::class.java)
         }
 
         btnMainDeleteSavings.setOnClickListener {
-            startActivity(Intent(this, SavingsDeleteActivity::class.java))
+            navigateToActivity(SavingsDeleteActivity::class.java)
         }
+    }
 
+    // Reusable function to navigate to another activity
+    private fun <T> navigateToActivity(activity: Class<T>) {
+        startActivity(Intent(this, activity))
     }
 }

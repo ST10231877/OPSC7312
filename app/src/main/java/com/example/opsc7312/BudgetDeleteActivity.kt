@@ -1,6 +1,5 @@
 package com.example.opsc7312
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -33,16 +32,10 @@ class BudgetDeleteActivity : ComponentActivity() {
         setContentView(R.layout.budgetdelete_page)
 
         // Initialize UI elements
-        btnHome = findViewById(R.id.btnHome)
-        btnDeleteBudget = findViewById(R.id.btnDeleteBudget)
-        spinnerAccounts = findViewById(R.id.spinnerAccounts)
-        spinnerCategories = findViewById(R.id.spinnerCategories)
-        noCategoriesTextView = findViewById(R.id.noCategoriesTextView) // TextView to display when no categories are found
+        initViews()
 
-        // Go back to home
-        btnHome.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
-        }
+        // Set up listeners
+        setupListeners()
 
         // Retrieve userId from SharedPreferences
         val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
@@ -51,7 +44,22 @@ class BudgetDeleteActivity : ComponentActivity() {
         if (userId != null) {
             fetchUserAccounts(userId)
         } else {
-            Toast.makeText(this, "User session is missing. Please log in again.", Toast.LENGTH_SHORT).show()
+            showToast("User session is missing. Please log in again.")
+        }
+    }
+
+    private fun initViews() {
+        btnHome = findViewById(R.id.btnHome)
+        btnDeleteBudget = findViewById(R.id.btnDeleteBudget)
+        spinnerAccounts = findViewById(R.id.spinnerAccounts)
+        spinnerCategories = findViewById(R.id.spinnerCategories)
+        noCategoriesTextView = findViewById(R.id.noCategoriesTextView)
+    }
+
+    private fun setupListeners() {
+        // Go back to home
+        btnHome.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
         }
 
         // Handle account selection
@@ -59,9 +67,7 @@ class BudgetDeleteActivity : ComponentActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 selectedAccount = accountNames[position]
                 // Fetch categories for the selected account
-                if (selectedAccount != null && userId != null) {
-                    fetchAccountCategories(userId, selectedAccount!!)
-                }
+                fetchAccountCategories(selectedAccount!!)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -82,55 +88,51 @@ class BudgetDeleteActivity : ComponentActivity() {
 
         // Handle delete button click
         btnDeleteBudget.setOnClickListener {
-            if (selectedAccount != null && selectedCategory != null && userId != null) {
-                // Show confirmation dialog before deleting
-                showDeleteConfirmationDialog(userId, selectedAccount!!, selectedCategory!!)
+            if (selectedAccount != null && selectedCategory != null) {
+                showDeleteConfirmationDialog(selectedAccount!!, selectedCategory!!)
             } else {
-                Toast.makeText(this, "Please select an account and category", Toast.LENGTH_SHORT).show()
+                showToast("Please select an account and category")
             }
         }
     }
 
-    // Show confirmation dialog before deleting the budget category
-    // Show confirmation dialog before deleting the account
-    private fun showDeleteConfirmationDialog(userId: String, accountName: String, category: String) {
+    private fun showDeleteConfirmationDialog(accountName: String, category: String) {
         val builder = android.app.AlertDialog.Builder(this)
-        builder.setTitle("Delete Account")
-        builder.setMessage("Are you sure you want to delete the account '$accountName'?")
+        builder.setTitle("Delete Category")
+        builder.setMessage("Are you sure you want to delete the category '$category' from account '$accountName'?")
 
         // Set up the confirmation buttons
         builder.setPositiveButton("Yes") { dialog, _ ->
-            deleteCategory(userId, accountName, category) // Proceed with account deletion
+            deleteCategory(accountName, category)
             dialog.dismiss()
         }
-        builder.setNegativeButton("No") { dialog, _ ->
-            dialog.dismiss() // Cancel the deletion process
-        }
+        builder.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
 
         val dialog: android.app.AlertDialog = builder.create()
         dialog.show()
     }
 
-    private fun deleteCategory(userId: String, accountName: String, category: String) {
+    private fun deleteCategory(accountName: String, category: String) {
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getString("userId", null) ?: return
+
         val call = RetrofitClient.apiService.deleteCategory(userId, accountName, category)
         call.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@BudgetDeleteActivity, "Category '$category' deleted successfully.", Toast.LENGTH_SHORT).show()
-                    // After deletion, refresh the category spinner
-                    fetchAccountCategories(userId, accountName)
+                    showToast("Category '$category' deleted successfully.")
+                    fetchAccountCategories(accountName) // Refresh categories
                 } else {
-                    Toast.makeText(this@BudgetDeleteActivity, "Failed to delete category: ${response.errorBody()?.string()}", Toast.LENGTH_SHORT).show()
+                    showToast("Failed to delete category: ${response.errorBody()?.string()}")
                 }
             }
 
             override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(this@BudgetDeleteActivity, "Failed to connect: ${t.message}", Toast.LENGTH_SHORT).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
     }
 
-    // Fetch user accounts from the API
     private fun fetchUserAccounts(userId: String) {
         val call = RetrofitClient.apiService.getUserAccounts(userId)
         call.enqueue(object : Callback<AccountsResponse> {
@@ -140,34 +142,33 @@ class BudgetDeleteActivity : ComponentActivity() {
                     accountNames = accountsResponse.accounts.map { it.name }
 
                     // Populate the spinner with account names
-                    val adapter = ArrayAdapter(
-                        this@BudgetDeleteActivity,
-                        android.R.layout.simple_spinner_item,
-                        accountNames
-                    )
+                    val adapter = ArrayAdapter(this@BudgetDeleteActivity, android.R.layout.simple_spinner_item, accountNames)
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     spinnerAccounts.adapter = adapter
                 } else {
-                    Toast.makeText(this@BudgetDeleteActivity, "Failed to fetch accounts", Toast.LENGTH_SHORT).show()
+                    showToast("Failed to fetch accounts")
                 }
             }
 
             override fun onFailure(call: Call<AccountsResponse>, t: Throwable) {
-                Toast.makeText(this@BudgetDeleteActivity, "Failed to connect: ${t.message}", Toast.LENGTH_SHORT).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
     }
 
-    private fun fetchAccountCategories(userId: String, accountName: String) {
+    private fun fetchAccountCategories(accountName: String) {
+        val sharedPreferences = getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val userId = sharedPreferences.getString("userId", null) ?: return
+
         val call = RetrofitClient.apiService.getAccountCategories(userId, accountName)
-        call.enqueue(object : Callback<CategoriesResponse> {  // Changed to CategoriesResponse
+        call.enqueue(object : Callback<CategoriesResponse> {
             override fun onResponse(call: Call<CategoriesResponse>, response: Response<CategoriesResponse>) {
                 if (response.isSuccessful) {
                     val categoriesResponse = response.body()
 
                     if (categoriesResponse != null && categoriesResponse.budgets.isNotEmpty()) {
                         noCategoriesTextView.visibility = TextView.GONE
-                        categoryNames = categoriesResponse.budgets.map { it.category }  // Extract categories
+                        categoryNames = categoriesResponse.budgets.map { it.category }
 
                         // Populate spinner with category names
                         val adapter = ArrayAdapter(this@BudgetDeleteActivity, android.R.layout.simple_spinner_item, categoryNames)
@@ -181,16 +182,17 @@ class BudgetDeleteActivity : ComponentActivity() {
                         btnDeleteBudget.isEnabled = false // Disable delete button
                     }
                 } else {
-                    Toast.makeText(this@BudgetDeleteActivity, "Failed to fetch categories", Toast.LENGTH_SHORT).show()
+                    showToast("Failed to fetch categories")
                 }
             }
 
             override fun onFailure(call: Call<CategoriesResponse>, t: Throwable) {
-                Toast.makeText(this@BudgetDeleteActivity, "Failed to connect: ${t.message}", Toast.LENGTH_SHORT).show()
+                showToast("Failed to connect: ${t.message}")
             }
         })
     }
 
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
 }
-
-

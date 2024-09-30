@@ -4,6 +4,7 @@ import com.example.opsc7312.api.RegisterRequest
 import com.example.opsc7312.api.RegisterResponse
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log // Import Log for debugging
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -52,10 +53,11 @@ class SignUpActivity : ComponentActivity() {
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 if (response.isSuccessful) {
                     val registerResponse = response.body()
-                    if (registerResponse != null && registerResponse.message == "com.example.opsc7312.api.User registered successfully.") {
+                    Log.d("SignUpActivity", "Response: ${registerResponse?.message}") // Log the message
+
+                    if (registerResponse != null && registerResponse.message.contains("User registered successfully", ignoreCase = true)) {
                         Toast.makeText(this@SignUpActivity, "Registration successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
-                        finish()
+                        navigateToLogin() // Navigate to login on success
                     } else {
                         Toast.makeText(this@SignUpActivity, "Registration failed: ${registerResponse?.message}", Toast.LENGTH_SHORT).show()
                     }
@@ -74,5 +76,11 @@ class SignUpActivity : ComponentActivity() {
         val digest = MessageDigest.getInstance("SHA-256")
         val hashBytes = digest.digest(password.toByteArray())
         return hashBytes.joinToString("") { "%02x".format(it) }
+    }
+
+    // Navigate to the login activity
+    private fun navigateToLogin() {
+        startActivity(Intent(this, LoginActivity::class.java))
+        finish() // Optionally finish this activity to remove it from the back stack
     }
 }
